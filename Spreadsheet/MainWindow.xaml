@@ -1,0 +1,35 @@
+﻿<Window x:Class="SimpleSpreadsheetWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Simple Spreadsheet" Height="450" Width="800">
+    <Grid>
+        <DataGrid x:Name="SpreadsheetGrid"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  IsReadOnly="False"
+                  Margin="10"
+                  ItemsSource="{Binding Rows}">
+            <DataGrid.Columns>
+                <!-- Always-visible dropdown column -->
+                <DataGridTemplateColumn Header="Type">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox ItemsSource="{Binding TypeOptions}"
+                                      SelectedItem="{Binding SelectedType, Mode=TwoWay}"
+                                      IsDropDownOpen="False"
+                                      Width="100"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- Text Columns -->
+                <DataGridTextColumn Header="A" Binding="{Binding ColumnA}" />
+                <DataGridTextColumn Header="B" Binding="{Binding ColumnB}" />
+                <DataGridTextColumn Header="C" Binding="{Binding ColumnC}" />
+                <DataGridTextColumn Header="D" Binding="{Binding ColumnD}" />
+                <DataGridTextColumn Header="E" Binding="{Binding ColumnE}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
